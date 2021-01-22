@@ -1,0 +1,15 @@
+<% @flat.each do |flat| %>
+  Name: <%= flat.name %>
+  <br>
+  Address: <%= flat.address %>
+  <br>
+  Description: <%= flat.description %>
+  <br>
+  Price per night: <%= flat.price_per_night %>
+  <br>
+  Number of guests: <%= flat.number_of_guests %>
+  <br>
+  <%= link_to "View", flat_path(flat) %>
+  <br>
+  <br>
+<% end %>
