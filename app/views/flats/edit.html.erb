@@ -1,0 +1,28 @@
+<div class="container">
+  <%= simple_form_for @flat do |f| %>
+  <div class="field-container">
+    <div class="new-flat-fields">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="new-flat-fields">
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </div>
+    <div class="new-flat-fields">
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </div>
+    <div class="new-flat-fields">
+      <%= f.label :price_per_night %>
+      <%= f.text_field :price_per_night %>
+    </div>
+    <div class="new-flat-fields">
+      <%= f.label :number_of_guests %>
+      <%= f.text_field :number_of_guests %>
+    </div>
+  </div>
+    <%= f.submit "Create" %>
+  <% end %>
+  <%= link_to "Back", flat_path(@flat) %>
+</div>

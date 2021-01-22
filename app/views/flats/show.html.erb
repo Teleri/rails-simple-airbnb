@@ -1,12 +1,16 @@
-Name: <%= @flat.name %>
-<br>
-Address: <%= @flat.address %>
-<br>
-Description: <%= @flat.description %>
-<br>
-Price per night: <%= @flat.price_per_night %>
-<br>
-Number of guests: <%= @flat.number_of_guests %>
-<br>
-<br>
+<div class="container">
+  Name: <%= @flat.name %>
+  <br>
+  Address: <%= @flat.address %>
+  <br>
+  Description: <%= @flat.description %>
+  <br>
+  Price per night: <%= @flat.price_per_night %>
+  <br>
+  Number of guests: <%= @flat.number_of_guests %>
+  <br>
+  <br>
+  <%= link_to "Edit Flat", edit_flat_path(@flat) %>
+  <%= link_to "Delete Flat", flat_path(@flat), method: :delete, data: { confirm: "Are you sure?" } %>
+</div>
 <%= link_to "Home", root_path %>

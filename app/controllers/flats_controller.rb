@@ -1,5 +1,5 @@
 class FlatsController < ApplicationController
-  before_action :find_flat, only: [:show, :create, :edit, :update, :destroy]
+  before_action :find_flat, only: [:edit, :update, :show, :destroy]
 
   def index
     @flat = Flat.all
@@ -13,24 +13,25 @@ class FlatsController < ApplicationController
   end
 
   def create
-    @flat = Flat.new(params[:flat])
+    @flat = Flat.new(flat_params)
     if @flat.save
-      redirect_to @flat
+      redirect_to flats_path
     else
-      render 'new'
+      render :new
     end
   end
 
   def edit
   end
 
-  def create
-    @flat = Flat.new(flat_params)
-    if @flat.save
-      redirect_to @flat
-    else
-      render 'new'
-    end
+  def update
+    @flat.update(flat_params)
+    redirect_to flat_path(@flat)
+  end
+
+  def destroy
+    @flat.destroy
+    redirect_to flats_path
   end
 
   private
