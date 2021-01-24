@@ -1,11 +1,15 @@
 class FlatsController < ApplicationController
-  before_action :find_flat, only: [:edit, :update, :show, :destroy]
+  before_action :set_flat, only: [:show, :edit, :update, :destroy]
 
   def index
-    @flat = Flat.all
-  end
-
-  def show
+    if params[:query].present?
+      @query = params[:query]
+      @flats = Flat.where("name LIKE ?","%#{params[:query]}%")
+      # Preventing SQL Injection and Database error for
+      # unknown characters
+    else
+      @flats = Flat.all
+    end
   end
 
   def new
@@ -19,6 +23,9 @@ class FlatsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
   end
 
   def edit
@@ -36,11 +43,11 @@ class FlatsController < ApplicationController
 
   private
 
-  def flat_params
-    params.require(:flat).permit(:name, :address, :description, :price_per_night, :number_of_guests)
+  def set_flat
+    @flat = Flat.find(params[:id])
   end
 
-  def find_flat
-    @flat = Flat.find(params[:id])
+  def flat_params
+    params.require(:flat).permit(:name, :address, :description, :price_per_night, :number_of_guests, :picture_url)
   end
 end
