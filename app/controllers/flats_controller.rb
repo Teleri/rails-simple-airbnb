@@ -5,8 +5,6 @@ class FlatsController < ApplicationController
     if params[:query].present?
       @query = params[:query]
       @flats = Flat.where("name LIKE ?","%#{params[:query]}%")
-      # Preventing SQL Injection and Database error for
-      # unknown characters
     else
       @flats = Flat.all
     end
